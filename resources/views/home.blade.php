@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row row-cols-2 g-5">
 
-            @foreach ($movies as $movie)
+            @foreach ($movies as $index => $movie)
                 <div class="col">
-                    <a href="">
+                    <a href="{{ route('movies.show', $index) }}">
                         <img src="{{ $movie->image }}" alt="">
                     </a>
                     <h2>{{ $movie->title }}</h2>

@@ -14,8 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 Route::get('/', [PageController::class, 'index'])->name('home');
+
+// Route::get('/', function () {
+//     $movies = config('movies');
+//     return view('home', compact('movies'));
+// });
+
+Route::get('/{movie}', function ($movieIndex) {
+    $movies = config('movies');
+    if ($movieIndex >= 0) {
+        $singleMovie = $movies[$movieIndex];
+        return view('movies.show', compact('singleMovie'));
+    } else {
+        return abort(404);
+    }
+})->name('movies.show');
